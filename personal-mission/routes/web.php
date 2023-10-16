@@ -16,3 +16,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/', [App\Http\Controllers\User::class, 'home'])->name('home');
+
+Route::get('/login_dashboard', [App\Http\Controllers\User::class, 'login_dashboard'])->name('login_dashboard');
+
+Route::get('/registration_dashboard', [App\Http\Controllers\User::class, 'registration_dashboard'])->name('registration_dashboard');
