@@ -21,7 +21,7 @@
                         <div class="card" style="border-radius: 30px;">
                             <div class="card-body mb-5 p-5">
                                 <h3 class="text-uppercase text-center mb-5">Create an account</h3>
-                                    <form method="POST" action='#'>
+                                    <form method="POST" action='{{route('create_user')}}'>
                                         @csrf
                                         <div class="form-outline mb-2">
                                             <label class="form-label" for="form3Example1cg">Your First Name</label>
@@ -56,8 +56,8 @@
                                             <label class="form-label" for="form3Example1cg">User Type</label>
                                             <select class="form-control" value="{{request()->user_type}}"  name="user_type">
                                                 <option value="">Select</option>
-                                                <option value="1">Buyer</option>
-                                                <option value="2">Seller</option>
+                                                <option value="1">Admin</option>
+                                                <option value="2">User</option>
                                             </select>
                                         </div>
 
@@ -87,7 +87,7 @@
 
                                     @if (\Session::has('success'))
                                         <div class="alert alert-success">{!! \Session::get('success') !!} </div>
-                                @endif
+                                    @endif
                             </div>
                         </div>
                     </div>

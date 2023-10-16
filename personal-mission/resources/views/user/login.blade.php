@@ -15,10 +15,12 @@
 </div>
 <section class="vh-100">
     <div class="container-fluid">
-        <div class="row">
+        <div class="row pt-2">
             <div class="col-sm-6 text-black">
+                @if (\Session::has('success'))
+                    <div class="alert alert-success">{!! \Session::get('success') !!} </div>
+                @endif
                 <div class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5">
-
                     <form style="width: 23rem;">
 
                         <h2 class="fw-normal mb-3 pb-3" style="letter-spacing: 5px;">Log in</h2>
