@@ -24,3 +24,9 @@ Route::get('/login_dashboard', [App\Http\Controllers\UserController::class, 'log
 Route::get('/registration_dashboard', [App\Http\Controllers\UserController::class, 'registration_dashboard'])->name('registration_dashboard');
 
 Route::post('/create_user', [App\Http\Controllers\UserController::class, 'create_user'])->name('create_user');
+
+Route::post('/login', [App\Http\Controllers\UserController::class, 'login'])->name('login');
+
+Route::get('/admin_login', [App\Http\Controllers\UserController::class, 'admin_login'])->name('admin_login');
+
+Route::get('/user_login', [App\Http\Controllers\UserController::class, 'user_login'])->name('user_login');

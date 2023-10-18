@@ -19,24 +19,26 @@
             <div class="col-sm-6 text-black">
                 @if (\Session::has('success'))
                     <div class="alert alert-success">{!! \Session::get('success') !!} </div>
+                @elseif(\Session::has('fail'))
+                    <div class="alert alert-danger">{!! \Session::get('fail') !!} </div>
                 @endif
                 <div class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5">
-                    <form style="width: 23rem;">
-
+                    <form method="POST" action='{{route('login')}}'>
+                        @csrf
                         <h2 class="fw-normal mb-3 pb-3" style="letter-spacing: 5px;">Log in</h2>
 
                         <div class="form-outline mb-4">
                             <label class="form-label" for="form2Example18">Email address</label>
-                            <input type="email" id="form2Example18" class="form-control form-control-lg" placeholder=" @gmail.com " />
+                            <input type="email" value="{{request()->email}}" name="email" id="form2Example18" class="form-control form-control-lg" placeholder=" @gmail.com " />
                         </div>
 
                         <div class="form-outline mb-4">
                             <label class="form-label" for="form2Example28">Password</label>
-                            <input type="password" id="form2Example28" class="form-control form-control-lg" placeholder="type your password.." />
+                            <input type="password" value="{{request()->password}}" name="password" id="form2Example28" class="form-control form-control-lg" placeholder="type your password.." />
                         </div>
 
                         <div class="pt-1 mb-4">
-                            <button class="btn btn-info btn-lg btn-block" type="button">Login</button>
+                            <button class="btn btn-info btn-lg btn-block" type="submit">Login</button>
                         </div>
 
                         <p class="small mb-5 pb-lg-2"><a class="text-muted" href="#!">Forgot password?</a></p>
