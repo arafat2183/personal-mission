@@ -54,7 +54,7 @@
 
                                         <div class="form-outline mb-2">
                                             <label class="form-label" for="form3Example1cg">User Type</label>
-                                            <select class="form-control" value="{{request()->user_type}}"  name="user_type">
+                                            <select class="form-control" value="{{request()->user_type}}" name="user_type">
                                                 <option value="">Select</option>
                                                 <option value="1">Admin</option>
                                                 <option value="2">User</option>
@@ -68,15 +68,8 @@
 
                                         <div class="form-outline mb-2">
                                             <label class="form-label" for="form3Example4cdg">Confirm Password</label>
-                                            <input type="password" value="{{request()->confirm_password}}" name="confirm_password"id="form3Example4cdg" class="form-control form-control-lg"  placeholder="Enter password.."  />
+                                            <input type="password" value="{{request()->confirm_password}}" name="confirm_password" id="form3Example4cdg" class="form-control form-control-lg"  placeholder="Enter password.."  />
                                         </div>
-
-{{--                                        <div class="form-check d-flex justify-content-center mb-5">--}}
-{{--                                            <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3cg" />--}}
-{{--                                            <label class="form-check-label" for="form2Example3g">--}}
-{{--                                                I agree all statements in <a href="#!" class="text-body"><u>Terms of service</u></a>--}}
-{{--                                            </label>--}}
-{{--                                        </div>--}}
                                         <div class="d-flex justify-content-center pt-2">
                                             <button type="submit" name="store"
                                                     class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Register</button>

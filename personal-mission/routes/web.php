@@ -27,6 +27,14 @@ Route::post('/create_user', [App\Http\Controllers\UserController::class, 'create
 
 Route::post('/login', [App\Http\Controllers\UserController::class, 'login'])->name('login');
 
-Route::get('/admin_login', [App\Http\Controllers\UserController::class, 'admin_login'])->name('admin_login');
+Route::get('/admin_login', [App\Http\Controllers\UserController::class, 'admin_login'])->name('admin_login')->middleware('auth');
 
-Route::get('/user_login', [App\Http\Controllers\UserController::class, 'user_login'])->name('user_login');
+Route::get('/user_login', [App\Http\Controllers\UserController::class, 'user_login'])->name('user_login')->middleware('auth');
+
+Route::get('/user_logout', [App\Http\Controllers\UserController::class, 'user_logout'])->name('user_logout');
+
+Route::get('/edit_user', [App\Http\Controllers\UserController::class, 'edit_user'])->name('edit_user');
+
+Route::put('/update/{id}', [App\Http\Controllers\UserController::class, 'update_user'])->name('update_user');
+
+Route::delete('/delete/{id}', [App\Http\Controllers\UserController::class, 'destroy'])->name('delete_user');
