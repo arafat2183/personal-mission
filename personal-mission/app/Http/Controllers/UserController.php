@@ -52,13 +52,10 @@ class UserController extends Controller
         if(Auth::attempt($credentials))
         {
             $request->session()->regenerate();
-            $userAllData = User::where('email', $credentials['email'])->first();
-            if ($userAllData->user_type == 1) {
-                $allAdminData = User::where('email', $request->email)->latest()->get();
-                return view('dashboard.admin', compact('allAdminData'));
+            if (Auth::user()->user_type == 1) {
+                return redirect()->route('admin_login');
             } else {
-                $allUserData = User::where('email', $request->email)->latest()->get();
-                return view('dashboard.user', compact('allUserData'));
+                return redirect()->route('user_login');
             }
         }
 
@@ -67,12 +64,14 @@ class UserController extends Controller
 
     public function admin_login(Request $request)
     {
-        return view('dashboard.admin');
+        $user = Auth::user();
+        return view('dashboard.admin', compact('user'));
     }
 
     public function user_login(Request $request)
     {
-        return view('dashboard.user');
+        $user = Auth::user();
+        return view('dashboard.user', compact('user'));
     }
 
     public function user_logout(): RedirectResponse
@@ -85,11 +84,11 @@ class UserController extends Controller
     public function edit_user()
     {
         if (auth()->user()->user_type == 1) {
-            $allAdminData = User::where('email', auth()->user()->email)->latest()->get();
-            return view('user.edit_user', compact('allAdminData'));
+            $user = Auth::user();
+            return view('user.edit_user', compact('user'));
         } elseif (auth()->user()->user_type == 2) {
-            $allUserData = User::where('email', auth()->user()->email)->latest()->get();
-            return view('user.edit_user', compact('allUserData'));
+            $user = Auth::user();
+            return view('user.edit_user', compact('user'));
         }
     }
 
@@ -100,8 +99,8 @@ class UserController extends Controller
             return $this->user_logout();
         }else {
             User::where('id', $request->id)->update($request->only('first_name', 'last_name', 'email', 'mobile', 'country', 'dob'));
-            $allUserData = User::where('email', $request->email)->latest()->get();
-            return view('dashboard.user', compact('allUserData'))->with(['success' => 'User information has been Updated successfully!']);
+            $user = User::where('email', $request->email)->first();
+            return view('dashboard.user', compact('user'))->with(['success' => 'User information has been Updated successfully!']);
         }
     }
 

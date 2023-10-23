@@ -13,9 +13,9 @@
 <div class="container">
     <nav class="navbar bg-primary navbar-fixed-top" data-bs-theme="dark">
         <div class="container-fluid">
-            @if(isset($allAdminData) && $allAdminData[0]['user_type'] == 1)
+            @if(isset($user) && $user['user_type'] == 1)
                 <a class="navbar-brand" href="#">Admin Profile</a>
-            @elseif(isset($allUserData) && $allUserData[0]['user_type'] == 2)
+            @elseif(isset($user) && $user['user_type'] == 2)
                 <a class="navbar-brand" href="#">User Profile</a>
             @endif
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -84,7 +84,11 @@
                                                     </div>
                                                     <div class="col-6 mb-3">
                                                         <h6>Date of Birth</h6>
-                                                        <input type="text" name="dob" class="form-control" value="{{request()->dob}}" placeholder="Date of Birth" aria-label="Username" aria-describedby="basic-addon1">
+                                                        @if(isset($user) && $user['user_type'] == 2)
+                                                            <input type="text" name="dob" class="form-control" disabled value="{{request()->dob}}" placeholder="Date of Birth" aria-label="Username" aria-describedby="basic-addon1">
+                                                        @else
+                                                            <input type="text" name="dob" class="form-control" value="{{request()->dob}}" placeholder="Date of Birth" aria-label="Username" aria-describedby="basic-addon1">
+                                                        @endif
                                                     </div>
                                                 </div>
                                                 <h6>Projects</h6>
@@ -125,13 +129,13 @@
                                             >
                                                 <button type="button" class="btn btn-danger">Delete</button>
                                             </a>
-                                            @if(isset($allAdminData) && $allAdminData[0]['user_type'] == 1)
-                                                <form id="delete-to" action="{{route('delete_user', $allAdminData[0]->id)}}" method="POST" class="d-none">
+                                            @if(isset($user) && $user['user_type'] == 1)
+                                                <form id="delete-to" action="{{route('delete_user', $user->id)}}" method="POST" class="d-none">
                                                     @method('delete')
                                                     @csrf
                                                 </form>
-                                            @elseif(isset($allUserData) && $allUserData[0]['user_type'] == 2)
-                                                <form id="delete-to" action="{{route('delete_user', $allUserData[0]->id)}}" method="POST" class="d-none">
+                                            @elseif(isset($user) && $user['user_type'] == 2)
+                                                <form id="delete-to" action="{{route('delete_user', $user->id)}}" method="POST" class="d-none">
                                                     @method('delete')
                                                     @csrf
                                                 </form>

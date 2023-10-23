@@ -51,31 +51,31 @@
                                         <div class="row pt-1">
                                             <div class="col-6 mb-3">
                                                 <h6>First Name</h6>
-                                                <p class="text-muted">{{$allUserData[0]['first_name']}}</p>
+                                                <p class="text-muted">{{$user['first_name']}}</p>
                                             </div>
                                             <div class="col-6 mb-3">
                                                 <h6>Last Name</h6>
-                                                <p class="text-muted">{{$allUserData[0]['last_name']}}</p>
+                                                <p class="text-muted">{{$user['last_name']}}</p>
                                             </div>
                                         </div>
                                         <div class="row pt-1">
                                             <div class="col-6 mb-3">
                                                 <h6>Email</h6>
-                                                <p class="text-muted">{{$allUserData[0]['email']}}</p>
+                                                <p class="text-muted">{{$user['email']}}</p>
                                             </div>
                                             <div class="col-6 mb-3">
                                                 <h6>Mobile</h6>
-                                                <p class="text-muted">{{$allUserData[0]['mobile']}}</p>
+                                                <p class="text-muted">{{$user['mobile']}}</p>
                                             </div>
                                         </div>
                                         <div class="row pt-1">
                                             <div class="col-6 mb-3">
                                                 <h6>Country</h6>
-                                                <p class="text-muted">{{$allUserData[0]['country']}}</p>
+                                                <p class="text-muted">{{$user['country']}}</p>
                                             </div>
                                             <div class="col-6 mb-3">
                                                 <h6>Date of Birth</h6>
-                                                <p class="text-muted">{{$allUserData[0]['dob']}}</p>
+                                                <p class="text-muted">{{$user['dob']}}</p>
                                             </div>
                                         </div>
                                         <h6>Projects</h6>
@@ -96,14 +96,14 @@
                                                     <div class="buttons">
                                                         <a href="{{route('edit_user',
                                                                                     [
-                                                                                        'id'=>$allUserData[0]->id,
-                                                                                        'first_name'=>$allUserData[0]->first_name,
-                                                                                        'last_name'=>$allUserData[0]->last_name,
-                                                                                        'email'=>$allUserData[0]->email,
-                                                                                        'mobile'=>$allUserData[0]->mobile,
-                                                                                        'country'=>$allUserData[0]->country,
-                                                                                        'dob'=>$allUserData[0]->dob,
-                                                                                        'user_type'=>$allUserData[0]->user_type
+                                                                                        'id'=>$user->id,
+                                                                                        'first_name'=>$user->first_name,
+                                                                                        'last_name'=>$user->last_name,
+                                                                                        'email'=>$user->email,
+                                                                                        'mobile'=>$user->mobile,
+                                                                                        'country'=>$user->country,
+                                                                                        'dob'=>$user->dob,
+                                                                                        'user_type'=>$user->user_type
                                                                                     ])}}">
                                                             <button type="button" class="btn btn-success">Edit</button>
                                                         </a>
@@ -113,7 +113,7 @@
                                                         >
                                                             <button type="button" class="btn btn-danger">Delete</button>
                                                         </a>
-                                                        <form id="delete-to" action="{{route('delete_user', $allUserData[0]->id)}}" method="POST" class="d-none">
+                                                        <form id="delete-to" action="{{route('delete_user', $user->id)}}" method="POST" class="d-none">
                                                             @method('delete')
                                                             @csrf
                                                         </form>
