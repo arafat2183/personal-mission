@@ -26,12 +26,24 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="#">Home</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{route('personalMissionView')}}">Personal Mission</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{route('admin_login')}}">Profile</a>
-                    </li>
+                    @if(isset($user) && $user['user_type'] == 1))
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('personalMissionView')}}">Personal Mission</a>
+                        </li>
+                    @else
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('personalMissionUserView')}}">Personal Mission</a>
+                        </li>
+                    @endif
+                    @if(isset($user) && $user['user_type'] == 1))
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('admin_login')}}">Profile</a>
+                        </li>
+                    @else
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('user_login')}}">Profile</a>
+                        </li>
+                    @endif
                     <li class="nav-item">
                         <a class="nav-link" href="{{route('user_logout')}}">Logout</a>
                     </li>
