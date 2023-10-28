@@ -39,4 +39,15 @@ class PersonalMissionController extends Controller
                                 ->get();
         return view('personal_mission.admin_mission_view', compact('usersWithMissions'));
     }
+
+    public function personalMissionUserView(): View
+    {
+        $user = Auth::user();
+        $usersWithMissions = DB::table('users')
+            ->join('personal_missions', 'users.id', '=', 'personal_missions.user_id')
+            ->select('users.*', 'personal_missions.personal_mission')
+            ->where('users.id', '=', $user->id)
+            ->get();
+        return view('personal_mission.user_mission_view', compact('usersWithMissions'));
+    }
 }

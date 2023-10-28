@@ -32,39 +32,47 @@
             </div>
         </div>
     </nav>
-    <div class="container-fluid mt-3">
-        <section class="vh-100" style="background-color: #E3E4FA;">
-            <div class="container py-5 h-100">
-                <div class="row d-flex justify-content-center align-items-center h-100">
-                    <div class="col col-lg-6 mb-4 mb-lg-0">
-                        <div class="card mb-3" style="border-radius: .5rem;">
-                            <div class="row g-0">
-                                <div class="col-md-8">
-                                    <div class="container">
-                                        <p>
-                                            <div class="container-fluid">
-                                                <form method="POST" action="{{route('personalMissionCreate')}}">
-                                                    @csrf
-                                                    <div class="form-group">
-                                                        <label for="exampleFormControlTextarea1">Your Mission</label>
-                                                        <textarea class="form-control" name="personal_mission" id="exampleFormControlTextarea1" rows="3"></textarea>
-                                                    </div>
-                                                    <div class="form-group row pt-2">
-                                                        <div class="col-sm-10">
-                                                            <button type="submit" class="btn btn-primary">Submit</button>
-                                                        </div>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    <div class="container mt-5 mb-3">
+        <div class="card p-5">
+            <div class="card-header">
+                <h2>Mission List</h2>
             </div>
-        </section>
+
+            <div class="row mt-3">
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th scope="col">SN</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Roll</th>
+                        <th scope="col">Mission</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @php($i = 1)
+                    @foreach($usersWithMissions as $usersMission)
+                        <tr>
+                            <th scope="row">{{$i++}}</th>
+                            <td><div class="ms-2 me-auto">{{$usersMission->first_name}} {{$usersMission->last_name}}</div></td>
+                            <td>
+                                <div class="ms-2 me-auto">
+                                    @if($usersMission->user_type == 1)
+                                        Admin
+                                    @else
+                                        User
+                                    @endif
+                                </div>
+                            </td>
+                            <td><div class="ms-2 me-auto">{{$usersMission->personal_mission}}</div></td>
+                            <td><div class="ms-2 me-auto">Action will come here</div></td>
+                        </tr>
+                    @endforeach
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </div>
 </body>
