@@ -38,3 +38,9 @@ Route::get('/edit_user', [App\Http\Controllers\UserController::class, 'edit_user
 Route::put('/update/{id}', [App\Http\Controllers\UserController::class, 'update_user'])->name('update_user');
 
 Route::delete('/delete/{id}', [App\Http\Controllers\UserController::class, 'destroy'])->name('delete_user');
+
+Route::get('/personal-mission-user', [App\Http\Controllers\PersonalMissionController::class, 'personalMissionUser'])->name('personalMissionUser');
+
+Route::get('/personal-mission-dashboard', [App\Http\Controllers\PersonalMissionController::class, 'personalMissionDashboard'])->name('personalMissionDashboard');
+
+Route::post('/personal-mission-create', [App\Http\Controllers\PersonalMissionController::class, 'personalMissionCreate'])->name('personalMissionCreate');

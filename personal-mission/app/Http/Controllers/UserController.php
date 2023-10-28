@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\PersonalMission;
 use App\Models\Todo;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -65,13 +66,17 @@ class UserController extends Controller
     public function admin_login(Request $request)
     {
         $user = Auth::user();
-        return view('dashboard.admin', compact('user'));
+        $userMission = PersonalMission::where('user_id', $user->id)->orderBy('created_at', 'DESC')->first();
+        $all_data = array($user, $userMission);
+        return view('dashboard.admin', compact('all_data'));
     }
 
     public function user_login(Request $request)
     {
         $user = Auth::user();
-        return view('dashboard.user', compact('user'));
+        $userMission = PersonalMission::where('user_id', $user->id)->orderBy('created_at', 'DESC')->first();
+        $all_data = array($user, $userMission);
+        return view('dashboard.user', compact('all_data'));
     }
 
     public function user_logout(): RedirectResponse
@@ -109,5 +114,6 @@ class UserController extends Controller
         User::where('id', $id)->delete();
         return redirect()->route('login_dashboard')->with(['success' => 'User is successfully Deleted from Database!']);
     }
+
 }
 
