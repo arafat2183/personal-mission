@@ -16,7 +16,7 @@
             <a class="navbar-brand" href="#">Admin Profile</a>
             @if(isset($all_data[1]['personal_mission']) && $all_data[1]['personal_mission'] != null)
                 <div class="text-center">
-                    <button type="button" hidden class="btn btn-success">
+                    <button type="button" hidden="" class="btn btn-success">
                         <a href="{{route('personalMissionUser')}}" class="navbar-brand inline_block font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Write This Month's Personal Mission</a>
                     </button>
                 </div>
@@ -44,7 +44,10 @@
                         <a class="nav-link active" aria-current="page" href="#">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Profile</a>
+                        <a class="nav-link" href="{{route('personalMissionView')}}">Personal Mission</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('admin_login')}}">Profile</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{route('user_logout')}}">Logout</a>

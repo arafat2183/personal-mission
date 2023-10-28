@@ -44,3 +44,5 @@ Route::get('/personal-mission-user', [App\Http\Controllers\PersonalMissionContro
 Route::get('/personal-mission-dashboard', [App\Http\Controllers\PersonalMissionController::class, 'personalMissionDashboard'])->name('personalMissionDashboard');
 
 Route::post('/personal-mission-create', [App\Http\Controllers\PersonalMissionController::class, 'personalMissionCreate'])->name('personalMissionCreate');
+
+Route::get('/personal-mission-view', [App\Http\Controllers\PersonalMissionController::class, 'personalMissionView'])->name('personalMissionView');
