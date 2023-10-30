@@ -28,7 +28,7 @@
                     </li>
                     @if(isset($user) && $user['user_type'] == 1))
                         <li class="nav-item">
-                            <a class="nav-link" href="{{route('personalMissionView')}}">Personal Mission</a>
+                            <a class="nav-link" href="{{route('personalMissionAdminView')}}">Personal Mission</a>
                         </li>
                     @else
                         <li class="nav-item">

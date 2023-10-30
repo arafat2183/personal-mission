@@ -23,7 +23,7 @@
                         <a class="nav-link active" aria-current="page" href="#">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route('personalMissionView')}}">Personal Mission</a>
+                        <a class="nav-link" href="{{route('personalMissionUserView')}}">Personal Mission</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{route('user_login')}}">Profile</a>
@@ -68,7 +68,27 @@
                                 </div>
                             </td>
                             <td><div class="ms-2 me-auto">{{$usersMission->personal_mission}}</div></td>
-                            <td><div class="ms-2 me-auto">Action will come here</div></td>
+                            <td>
+                                <div class="ms-2 me-auto">
+                                    @if($usersMission->edit_flag == 0)
+                                        <form method="POST" action="{{route('personalMissionUserEditRequest', $usersMission->id)}}">
+                                            @method('put')
+                                            @csrf
+                                            <input type="hidden" name="id" value="{{$usersMission->id}}">
+                                            <input type="hidden" name="edit_flag" value=1>
+                                            <a href="#">
+                                                <button type="submit" class="btn btn-secondary">Make Request To Edit Your Mission</button>
+                                            </a>
+                                        </form>
+                                    @elseif($usersMission->edit_flag == 1)
+                                        <button type="button" disabled class="btn btn-success">Requested</button>
+                                    @elseif($usersMission->edit_flag == 2)
+                                        <a href="{{route('personalMissionUserMissionEditDashboard', ['id'=>$usersMission->id, 'personal_mission'=>$usersMission->personal_mission])}}">
+                                            <button type="button" class="btn btn-success">Edit Mission</button>
+                                        </a>
+                                    @endif
+                                </div>
+                            </td>
                         </tr>
                     @endforeach
 

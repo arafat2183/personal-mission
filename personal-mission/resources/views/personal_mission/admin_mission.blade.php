@@ -23,7 +23,7 @@
                         <a class="nav-link active" aria-current="page" href="#">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route('personalMissionView')}}">Personal Mission</a>
+                        <a class="nav-link" href="{{route('personalMissionAdminView')}}">Personal Mission</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{route('admin_login')}}">Profile</a>

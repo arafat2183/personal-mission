@@ -35,9 +35,9 @@ Route::get('/user_logout', [App\Http\Controllers\UserController::class, 'user_lo
 
 Route::get('/edit_user', [App\Http\Controllers\UserController::class, 'edit_user'])->name('edit_user');
 
-Route::put('/update/{id}', [App\Http\Controllers\UserController::class, 'update_user'])->name('update_user');
+Route::put('/user-update/{id}', [App\Http\Controllers\UserController::class, 'update_user'])->name('update_user');
 
-Route::delete('/delete/{id}', [App\Http\Controllers\UserController::class, 'destroy'])->name('delete_user');
+Route::delete('/user-delete/{id}', [App\Http\Controllers\UserController::class, 'destroy'])->name('delete_user');
 
 Route::get('/personal-mission-user', [App\Http\Controllers\PersonalMissionController::class, 'personalMissionUser'])->name('personalMissionUser');
 
@@ -45,6 +45,14 @@ Route::get('/personal-mission-dashboard', [App\Http\Controllers\PersonalMissionC
 
 Route::post('/personal-mission-create', [App\Http\Controllers\PersonalMissionController::class, 'personalMissionCreate'])->name('personalMissionCreate');
 
-Route::get('/personal-mission-admin-view', [App\Http\Controllers\PersonalMissionController::class, 'personalMissionView'])->name('personalMissionView');
+Route::get('/personal-mission-admin-view', [App\Http\Controllers\PersonalMissionController::class, 'personalMissionAdminView'])->name('personalMissionAdminView');
 
 Route::get('/personal-mission-user-view', [App\Http\Controllers\PersonalMissionController::class, 'personalMissionUserView'])->name('personalMissionUserView');
+
+Route::put('/personal-mission-user-edit-request/{id}', [App\Http\Controllers\PersonalMissionController::class, 'personalMissionUserEditRequest'])->name('personalMissionUserEditRequest');
+
+Route::get('/personal-mission-user-mission-edit', [App\Http\Controllers\PersonalMissionController::class, 'personalMissionUserMissionEditDashboard'])->name('personalMissionUserMissionEditDashboard');
+
+Route::put('/personal-mission-user-mission-edit/{id}', [App\Http\Controllers\PersonalMissionController::class, 'personalMissionUserMissionEdit'])->name('personalMissionUserMissionEdit');
+
+

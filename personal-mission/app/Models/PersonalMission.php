@@ -12,5 +12,6 @@ class PersonalMission extends Model
     protected $fillable = [
         'user_id',
         'personal_mission',
+        'edit_flag',
     ];
 }

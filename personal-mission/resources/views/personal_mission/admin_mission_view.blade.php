@@ -23,7 +23,7 @@
                         <a class="nav-link active" aria-current="page" href="#">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route('personalMissionView')}}">Personal Mission</a>
+                        <a class="nav-link" href="{{route('personalMissionAdminView')}}">Personal Mission</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{route('admin_login')}}">Profile</a>
@@ -68,7 +68,27 @@
                                 </div>
                             </td>
                             <td><div class="ms-2 me-auto">{{$usersMission->personal_mission}}</div></td>
-                            <td><div class="ms-2 me-auto">Action will come here</div></td>
+                            <td>
+                                <div class="ms-2 me-auto">
+                                    @if($usersMission->edit_flag == 0)
+                                        <button type="submit" hidden class="btn btn-secondary">Make Request To Edit Your Mission</button>
+                                    @elseif($usersMission->edit_flag == 1)
+                                        <div>
+                                            <form method="POST" action="{{route('personalMissionAdminEditAcceptIgnoreRequest', $usersMission->id)}}">
+                                                @method('PUT')
+                                                @csrf
+                                                <input type="hidden" name="id" value="{{$usersMission->id}}">
+                                                <button type="submit" name="action" value="accept" class="btn btn-success">Accept</button>
+                                                <button type="submit" name="action" value="ignore" class="btn btn-danger mt-2">Ignore</button>
+                                            </form>
+                                        </div>
+                                    @elseif($usersMission->edit_flag == 2)
+                                        <a href="#">
+                                            <button type="button" hidden class="btn btn-success">Edit Mission</button>
+                                        </a>
+                                    @endif
+                                </div>
+                            </td>
                         </tr>
                     @endforeach
 
