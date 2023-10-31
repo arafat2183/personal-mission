@@ -33,11 +33,12 @@ class PersonalMissionController extends Controller
 
     public function personalMissionAdminView(): View
     {
+        $user = Auth::user();
         $usersWithMissions = DB::table('users')
                                 ->join('personal_missions', 'users.id', '=', 'personal_missions.user_id')
-                                ->select('users.*', 'personal_missions.id', 'personal_missions.personal_mission', 'personal_missions.edit_flag')
+                                ->select('users.*', 'personal_missions.id', 'personal_missions.personal_mission', 'personal_missions.edit_flag', 'personal_missions.user_id')
                                 ->get();
-        return view('personal_mission.admin_mission_view', compact('usersWithMissions'));
+        return view('personal_mission.admin_mission_view', compact('usersWithMissions'))->with('user', $user);
     }
 
     public function personalMissionUserView(): View
@@ -71,22 +72,24 @@ class PersonalMissionController extends Controller
     {
         if ($request->action == 'accept'){
             PersonalMission::where('id', $request->id)->update(['edit_flag'=>2]);
+            $user = Auth::user();
             $usersWithMissions = DB::table('users')
                 ->join('personal_missions', 'users.id', '=', 'personal_missions.user_id')
-                ->select('users.*', 'personal_missions.id', 'personal_missions.personal_mission', 'personal_missions.edit_flag')
+                ->select('users.*', 'personal_missions.id', 'personal_missions.personal_mission', 'personal_missions.edit_flag', 'personal_missions.user_id')
                 ->get();
-            return view('personal_mission.admin_mission_view', compact('usersWithMissions'));
+            return view('personal_mission.admin_mission_view', compact('usersWithMissions'))->with('user', $user);
         }elseif ($request->action == 'ignore') {
             PersonalMission::where('id', $request->id)->update(['edit_flag'=>0]);
+            $user = Auth::user();
             $usersWithMissions = DB::table('users')
                 ->join('personal_missions', 'users.id', '=', 'personal_missions.user_id')
-                ->select('users.*', 'personal_missions.id', 'personal_missions.personal_mission', 'personal_missions.edit_flag')
+                ->select('users.*', 'personal_missions.id', 'personal_missions.personal_mission', 'personal_missions.edit_flag', 'personal_missions.user_id')
                 ->get();
-            return view('personal_mission.admin_mission_view', compact('usersWithMissions'));
+            return view('personal_mission.admin_mission_view', compact('usersWithMissions'))->with('user', $user);
         }
     }
 
-    public function personalMissionUserMissionEditDashboard()
+    public function personalMissionUserMissionEditDashboard(Request $request)
     {
         $user = Auth::user();
         $usersWithMissions = DB::table('users')
@@ -99,9 +102,41 @@ class PersonalMissionController extends Controller
         return view('personal_mission.user_personal_mission_edit_dashboard', compact('usersWithMissions'));
     }
 
-    public function personalMissionUserMissionEdit(Request $request)
+    public function personalMissionUserMissionEdit(Request $request): View
     {
-        dd($request);
-        return 'test';
+        PersonalMission::where('id', $request->id)->update($request->only('personal_mission', 'edit_flag'));
+        $user = Auth::user();
+        $usersWithMissions = DB::table('users')
+            ->join('personal_missions', 'users.id', '=', 'personal_missions.user_id')
+            ->select('users.*', 'personal_missions.id', 'personal_missions.personal_mission', 'personal_missions.edit_flag')
+            ->where('users.id', '=', $user->id)
+            ->whereYear('personal_missions.created_at', '=', now()->format('Y')) //this year
+            ->whereMonth('personal_missions.created_at', '=', now()->format('m')) //this month
+            ->get();
+        return view('personal_mission.user_mission_view', compact('usersWithMissions'));
+    }
+
+    public function personalMissionAdminMissionEditDashboard()
+    {
+        $user = Auth::user();
+        $usersWithMissions = DB::table('users')
+            ->join('personal_missions', 'users.id', '=', 'personal_missions.user_id')
+            ->select('users.*', 'personal_missions.id', 'personal_missions.personal_mission', 'personal_missions.edit_flag')
+            ->where('users.id', '=', $user->id)
+            ->whereYear('personal_missions.created_at', '=', now()->format('Y')) //this year
+            ->whereMonth('personal_missions.created_at', '=', now()->format('m')) //this month
+            ->get();
+        return view('personal_mission.admin_personal_mission_edit_dashboard', compact('usersWithMissions'));
+    }
+
+    public function personalMissionAdminMissionUpdate(Request $request)
+    {
+        PersonalMission::where('id', $request->id)->update($request->only('personal_mission'));
+        $user = Auth::user();
+        $usersWithMissions = DB::table('users')
+            ->join('personal_missions', 'users.id', '=', 'personal_missions.user_id')
+            ->select('users.*', 'personal_missions.id', 'personal_missions.personal_mission', 'personal_missions.edit_flag', 'personal_missions.user_id')
+            ->get();
+        return view('personal_mission.admin_mission_view', compact('usersWithMissions'))->with('user', $user);
     }
 }

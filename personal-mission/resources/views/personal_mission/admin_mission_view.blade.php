@@ -71,7 +71,13 @@
                             <td>
                                 <div class="ms-2 me-auto">
                                     @if($usersMission->edit_flag == 0)
-                                        <button type="submit" hidden class="btn btn-secondary">Make Request To Edit Your Mission</button>
+                                        @if($user->id == $usersMission->user_id)
+                                            <a href="{{route('personalMissionAdminMissionEditDashboard', ['id'=>$usersMission->id, 'personal_mission'=>$usersMission->personal_mission])}}">
+                                                <button type="submit" class="btn btn-secondary">Edit Mission</button>
+                                            </a>
+                                        @else
+                                            <button type="submit" hidden class="btn btn-secondary">Make Request To Edit Your Mission</button>
+                                        @endif
                                     @elseif($usersMission->edit_flag == 1)
                                         <div>
                                             <form method="POST" action="{{route('personalMissionAdminEditAcceptIgnoreRequest', $usersMission->id)}}">
