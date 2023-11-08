@@ -35,97 +35,31 @@
             </div>
         </div>
     </nav>
-    <div class="container-fluid">
+    <div class="container-fluid mt-3">
         <section class="vh-100" style="background-color: #E3E4FA;">
             <div class="container py-5 h-100">
                 <div class="row d-flex justify-content-center align-items-center h-100">
                     <div class="col col-lg-6 mb-4 mb-lg-0">
                         <div class="card mb-3" style="border-radius: .5rem;">
                             <div class="row g-0">
-                                <div class="col-md-4 gradient-custom text-center text-white"
-                                     style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
-                                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
-                                         alt="Avatar" class="img-fluid my-5" style="width: 80px;" />
-                                </div>
                                 <div class="col-md-8">
-                                    <div class="card-body p-4">
-                                        <h6>User Information</h6>
-                                        <hr class="mt-0 mb-4">
-                                        <div class="row pt-1">
-                                            <div class="col-6 mb-3">
-                                                <h6>First Name</h6>
-                                                <p class="text-muted">{{$all_data[0]['first_name']}}</p>
-                                            </div>
-                                            <div class="col-6 mb-3">
-                                                <h6>Last Name</h6>
-                                                <p class="text-muted">{{$all_data[0]['last_name']}}</p>
-                                            </div>
-                                        </div>
-                                        <div class="row pt-1">
-                                            <div class="col-6 mb-3">
-                                                <h6>Email</h6>
-                                                <p class="text-muted">{{$all_data[0]['email']}}</p>
-                                            </div>
-                                            <div class="col-6 mb-3">
-                                                <h6>Mobile</h6>
-                                                <p class="text-muted">{{$all_data[0]['mobile']}}</p>
-                                            </div>
-                                        </div>
-                                        <div class="row pt-1">
-                                            <div class="col-6 mb-3">
-                                                <h6>Country</h6>
-                                                <p class="text-muted">{{$all_data[0]['country']}}</p>
-                                            </div>
-                                            <div class="col-6 mb-3">
-                                                <h6>Date of Birth</h6>
-                                                <p class="text-muted">{{$all_data[0]['dob']}}</p>
-                                            </div>
-                                        </div>
-                                        <h6>Projects</h6>
-                                        <hr class="mt-0 mb-4">
-                                        <div class="row pt-1">
-                                            <div class="col-6 mb-3">
-                                                <h6>Recent</h6>
-                                                <p class="text-muted">Lorem ipsum</p>
-                                            </div>
-                                            <div class="col-6 mb-3">
-                                                <h6>Most Viewed</h6>
-                                                <p class="text-muted">Dolor sit amet</p>
-                                            </div>
-                                        </div>
-                                        <div class="row pt-1">
-                                            <div class="btn-toolbar justify-content-between" role="toolbar" aria-label="Toolbar with button groups">
-                                                <div class="container">
-                                                    <div class="buttons">
-                                                        <a href="{{route('edit_user',
-                                                                                    [
-                                                                                        'id'=>$all_data[0]->id,
-                                                                                        'first_name'=>$all_data[0]->first_name,
-                                                                                        'last_name'=>$all_data[0]->last_name,
-                                                                                        'email'=>$all_data[0]->email,
-                                                                                        'mobile'=>$all_data[0]->mobile,
-                                                                                        'country'=>$all_data[0]->country,
-                                                                                        'dob'=>$all_data[0]->dob,
-                                                                                        'user_type'=>$all_data[0]->user_type
-                                                                                    ])}}">
-                                                            <button type="button" class="btn btn-success">Edit</button>
-                                                        </a>
-                                                        <a
-                                                            href="#"
-                                                            onclick="event.preventDefault();document.getElementById('delete-to').submit();"
-                                                        >
-                                                            <button type="button" class="btn btn-danger">Delete</button>
-                                                        </a>
-                                                        <form id="delete-to" action="{{route('delete_user', $all_data[0]->id)}}" method="POST" class="d-none">
-                                                            @method('delete')
-                                                            @csrf
-                                                        </form>
-                                                    </div>
-                                                    <div>
+                                    <div class="container">
+                                        <p>
+                                        <div class="container-fluid">
+                                            <form method="POST" action="{{route('personalMissionCreate')}}">
+                                                @csrf
+                                                <div class="form-group">
+                                                    <label for="exampleFormControlTextarea1">Your Mission</label>
+                                                    <textarea class="form-control" name="personal_mission" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                                </div>
+                                                <div class="form-group row pt-2">
+                                                    <div class="col-sm-10">
+                                                        <button type="submit" class="btn btn-primary">Submit</button>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </form>
                                         </div>
+                                        </p>
                                     </div>
                                 </div>
                             </div>
