@@ -60,3 +60,5 @@ Route::put('/personal-mission-user-mission-edit/{id}', [App\Http\Controllers\Per
 Route::get('/personal-mission-admin-mission-edit', [App\Http\Controllers\PersonalMissionController::class, 'personalMissionAdminMissionEditDashboard'])->name('personalMissionAdminMissionEditDashboard');
 
 Route::put('/personal-mission-admin-mission-update/{id}', [App\Http\Controllers\PersonalMissionController::class, 'personalMissionAdminMissionUpdate'])->name('personalMissionAdminMissionUpdate');
+
+Route::get('/personal-mission-personal-mission-report-view', [App\Http\Controllers\PersonalMissionController::class, 'personalMissionReportView'])->name('personalMissionReportView');

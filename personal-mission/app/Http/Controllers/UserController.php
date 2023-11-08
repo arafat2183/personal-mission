@@ -76,7 +76,11 @@ class UserController extends Controller
         $user = Auth::user();
         $userMission = PersonalMission::where('user_id', $user->id)->orderBy('created_at', 'DESC')->first();
         $all_data = array($user, $userMission);
-        return view('dashboard.user', compact('all_data'));
+        if ($user->user_type == 1){
+            return view('dashboard.admin', compact('all_data'));
+        }else{
+            return view('dashboard.user', compact('all_data'));
+        }
     }
 
     public function user_logout(): RedirectResponse

@@ -139,4 +139,16 @@ class PersonalMissionController extends Controller
             ->get();
         return view('personal_mission.admin_mission_view', compact('usersWithMissions'))->with('user', $user);
     }
+
+    public function personalMissionReportView()
+    {
+        $user = Auth::user();
+        $userMission = PersonalMission::where('user_id', $user->id)->orderBy('created_at', 'DESC')->first();
+        $all_data = array($user, $userMission);
+        $usersWithMissions = DB::table('users')
+            ->leftJoin('personal_missions', 'users.id', '=', 'personal_missions.user_id')
+            ->select('users.*', 'personal_missions.*')
+            ->get();
+        return view('personal_mission.mission_report', compact('all_data'))->with('usersWithMissions', $usersWithMissions);
+    }
 }

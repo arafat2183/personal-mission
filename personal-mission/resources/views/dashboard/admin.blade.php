@@ -15,6 +15,7 @@
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Admin Profile</a>
             @if(isset($all_data[1]['personal_mission']) && $all_data[1]['personal_mission'] != null)
+                @dd($all_data[0]->user_type)
                 <div class="text-center">
                     <button type="button" hidden="" class="btn btn-success">
                         <a href="{{route('personalMissionUser')}}" class="navbar-brand inline_block font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Write This Month's Personal Mission</a>
@@ -41,10 +42,13 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        <a class="nav-link active" aria-current="page" href="{{route('user_login')}}">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{route('personalMissionAdminView')}}">Personal Mission</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('personalMissionReportView')}}">Personal Mission Report</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{route('admin_login')}}">Profile</a>
@@ -56,7 +60,7 @@
             </div>
         </div>
     </nav>
-    <div class="container-fluid">
+    <div class="container-fluid pt-3">
         <section class="vh-100" style="background-color: #E3E4FA;">
             <div class="container py-5 h-100">
                 <div class="row d-flex justify-content-center align-items-center h-100">

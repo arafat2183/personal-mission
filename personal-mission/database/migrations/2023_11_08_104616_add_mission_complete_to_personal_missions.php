@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('personal_missions', function (Blueprint $table) {
-            $table->tinyInteger('edit_flag')->default(0)->comment('Edit Request = 0, Requested = 1, Editable = 2');
+            $table->tinyInteger('mission_complete')->default(0)->comment('The Number will consider as completed parcentage out of 100');
         });
     }
 
@@ -25,6 +25,7 @@ return new class extends Migration
             $table->dropColumn([
                 'user_id',
                 'personal_mission',
+                'edit_flag',
             ]);
         });
     }
