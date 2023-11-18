@@ -69,25 +69,53 @@
                 <div class="row d-flex justify-content-center align-items-center h-100">
                     <div class="col col-lg-6 mb-4 mb-lg-0">
                         <div class="card mb-3" style="border-radius: .5rem;">
+                            <button class="btn btn-success">Change View Color Color</button>
                             <div class="pl-2">
                                 @php($xValues = [])
                                 @php($yValues = [])
+                                @php($barColors = [])
                                 @foreach($usersWithMissions as $usersDataWithMissions)
                                     @php(array_push($xValues, $usersDataWithMissions->first_name))
                                     @php(array_push($yValues, $usersDataWithMissions->mission_complete))
+                                    @switch($usersDataWithMissions->mission_complete)
+                                        @case($usersDataWithMissions->mission_complete>=00 && $usersDataWithMissions->mission_complete<10)
+                                            @php(array_push($barColors, "red"))
+                                            @break
+                                        @case($usersDataWithMissions->mission_complete>=11 && $usersDataWithMissions->mission_complete<=20)
+                                            @php(array_push($barColors, "yellow"))
+                                            @break
+                                        @case($usersDataWithMissions->mission_complete>=21 && $usersDataWithMissions->mission_complete<=30)
+                                            @php(array_push($barColors, "crimson"))
+                                            @break
+                                        @case($usersDataWithMissions->mission_complete>=31 && $usersDataWithMissions->mission_complete<=40)
+                                            @php(array_push($barColors, "brown"))
+                                            @break
+                                        @case($usersDataWithMissions->mission_complete>=41 && $usersDataWithMissions->mission_complete<=50)
+                                            @php(array_push($barColors, "pink"))
+                                            @break
+                                        @case($usersDataWithMissions->mission_complete>=51 && $usersDataWithMissions->mission_complete<=60)
+                                            @php(array_push($barColors, "beige"))
+                                            @break
+                                        @case($usersDataWithMissions->mission_complete>=61 && $usersDataWithMissions->mission_complete<=70)
+                                            @php(array_push($barColors, "antiquewhite"))
+                                            @break
+                                        @case($usersDataWithMissions->mission_complete>=71 && $usersDataWithMissions->mission_complete<=80)
+                                            @php(array_push($barColors, "aqua"))
+                                            @break
+                                        @case($usersDataWithMissions->mission_complete>=81 && $usersDataWithMissions->mission_complete<=90)
+                                            @php(array_push($barColors, "blue"))
+                                            @break
+                                        @case($usersDataWithMissions->mission_complete>=91 && $usersDataWithMissions->mission_complete<=100)
+                                            @php(array_push($barColors, "green"))
+                                            @break
+                                    @endswitch
                                 @endforeach
                                 <canvas id="myChart" style="width:100%;max-width:1000px;margin-left: 10px"></canvas>
 
                                 <script>
                                     var xValues = JSON.parse('<?= json_encode($xValues); ?>');
                                     var yValues = JSON.parse('<?= json_encode($yValues); ?>');
-                                    var barColors = [
-                                        "rgba(255, 26, 104, 1)",
-                                        "rgba(54, 162, 235, 1)",
-                                        "rgba(255, 206, 86, 1)",
-                                        "rgba(75, 192, 192, 1)",
-                                        "rgba(153, 102, 255, 1)",
-                                    ];
+                                    var barColors = JSON.parse('<?= json_encode($barColors); ?>');
 
                                     new Chart("myChart", {
                                         type: "pie",
