@@ -44,19 +44,24 @@ class PersonalMissionController extends Controller
         return $usersWithMissions;
     }
 
+    public function allUserMissionInfoGet()
+    {
+        $usersWithMissions = DB::table('users')
+            ->join('personal_missions', 'users.id', '=', 'personal_missions.user_id')
+            ->select('users.*', 'personal_missions.*')
+            ->get();
+        return $usersWithMissions;
+    }
+
     public function personalMissionAdminView(): View
     {
         $user = Auth::user();
-        $usersWithMissions = DB::table('users')
-                                ->join('personal_missions', 'users.id', '=', 'personal_missions.user_id')
-                                ->select('users.*', 'personal_missions.id', 'personal_missions.personal_mission', 'personal_missions.edit_flag', 'personal_missions.user_id')
-                                ->get();
+        $usersWithMissions = $this->allUserMissionInfoGet();
         return view('personal_mission.admin_mission_view', compact('usersWithMissions'))->with('user', $user);
     }
 
     public function personalMissionUserView(): View
     {
-        $user = Auth::user();
         $usersWithMissions = $this->userMissionInfoGet();
         return view('personal_mission.user_mission_view', compact('usersWithMissions'));
     }
@@ -64,7 +69,6 @@ class PersonalMissionController extends Controller
     public function personalMissionUserEditRequest(Request $request)
     {
         PersonalMission::where('id', $request->id)->update($request->only('edit_flag'));
-        $user = Auth::user();
         $usersWithMissions = $this->userMissionInfoGet();
         return view('personal_mission.user_mission_view', compact('usersWithMissions'));
     }
@@ -74,15 +78,12 @@ class PersonalMissionController extends Controller
         if ($request->action == 'accept'){
             PersonalMission::where('id', $request->id)->update(['edit_flag'=>2]);
             $user = Auth::user();
-            $usersWithMissions = DB::table('users')
-                ->join('personal_missions', 'users.id', '=', 'personal_missions.user_id')
-                ->select('users.*', 'personal_missions.id', 'personal_missions.personal_mission', 'personal_missions.edit_flag', 'personal_missions.user_id')
-                ->get();
+            $usersWithMissions = $this->allUserMissionInfoGet();
             return view('personal_mission.admin_mission_view', compact('usersWithMissions'))->with('user', $user);
         }elseif ($request->action == 'ignore') {
             PersonalMission::where('id', $request->id)->update(['edit_flag'=>0]);
             $user = Auth::user();
-            $usersWithMissions = $this->userMissionInfoGet();
+            $usersWithMissions = $this->allUserMissionInfoGet();;
             return view('personal_mission.admin_mission_view', compact('usersWithMissions'))->with('user', $user);
         }
     }
@@ -110,10 +111,7 @@ class PersonalMissionController extends Controller
     {
         PersonalMission::where('id', $request->id)->update($request->only('personal_mission', 'mission_complete'));
         $user = Auth::user();
-        $usersWithMissions = DB::table('users')
-            ->join('personal_missions', 'users.id', '=', 'personal_missions.user_id')
-            ->select('users.*', 'personal_missions.id', 'personal_missions.personal_mission', 'personal_missions.edit_flag', 'personal_missions.user_id')
-            ->get();
+        $usersWithMissions = $this->allUserMissionInfoGet();
         return view('personal_mission.admin_mission_view', compact('usersWithMissions'))->with('user', $user);
     }
 
@@ -122,10 +120,7 @@ class PersonalMissionController extends Controller
         $user = Auth::user();
         $userMission = PersonalMission::where('user_id', $user->id)->orderBy('created_at', 'DESC')->first();
         $all_data = array($user, $userMission);
-        $usersWithMissions = DB::table('users')
-            ->leftJoin('personal_missions', 'users.id', '=', 'personal_missions.user_id')
-            ->select('users.*', 'personal_missions.*')
-            ->get();
+        $usersWithMissions = $this->allUserMissionInfoGet();
         return view('personal_mission.mission_report', compact('all_data'))->with('usersWithMissions', $usersWithMissions);
     }
 }
