@@ -42,7 +42,7 @@
                     @endif
                     @if(isset($user) && $user['user_type'] == 1)
                         <li class="nav-item">
-                            <a class="nav-link" href="{{route('admin_login')}}">Profile</a>
+                            <a class="nav-link" href="{{route('user_login')}}">Profile</a>
                         </li>
                     @else
                         <li class="nav-item">

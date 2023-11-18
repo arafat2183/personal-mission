@@ -57,7 +57,7 @@
                             <a class="nav-link" href="{{route('personalMissionReportView')}}">Personal Mission Report</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{route('admin_login')}}">Profile</a>
+                            <a class="nav-link" href="{{route('user_login')}}">Profile</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{route('user_logout')}}">Logout</a>
