@@ -45,9 +45,9 @@ Route::get('/personal-mission-dashboard', [App\Http\Controllers\PersonalMissionC
 
 Route::post('/personal-mission-create', [App\Http\Controllers\PersonalMissionController::class, 'personalMissionCreate'])->name('personalMissionCreate')->middleware('auth');
 
-Route::get('/personal-mission-admin-view', [App\Http\Controllers\PersonalMissionController::class, 'personalMissionAdminView'])->name('personalMissionAdminView')->middleware('auth', 'personal_mission_admin_view');
+Route::get('/personal-mission-admin-view', [App\Http\Controllers\PersonalMissionController::class, 'personalMissionAdminView'])->name('personalMissionAdminView')->middleware('auth', 'personalMissionAdminView');
 
-Route::get('/personal-mission-user-view', [App\Http\Controllers\PersonalMissionController::class, 'personalMissionUserView'])->name('personalMissionUserView')->middleware('auth', 'personal_mission_user_view');
+Route::get('/personal-mission-user-view', [App\Http\Controllers\PersonalMissionController::class, 'personalMissionUserView'])->name('personalMissionUserView')->middleware('auth', 'personalMissionUserView');
 
 Route::put('/personal-mission-user-edit-request/{id}', [App\Http\Controllers\PersonalMissionController::class, 'personalMissionUserEditRequest'])->name('personalMissionUserEditRequest')->middleware('auth');
 
@@ -61,4 +61,4 @@ Route::get('/personal-mission-admin-mission-edit', [App\Http\Controllers\Persona
 
 Route::put('/personal-mission-admin-mission-update/{id}', [App\Http\Controllers\PersonalMissionController::class, 'personalMissionAdminMissionUpdate'])->name('personalMissionAdminMissionUpdate')->middleware('auth');
 
-Route::get('/personal-mission-personal-mission-report-view', [App\Http\Controllers\PersonalMissionController::class, 'personalMissionReportView'])->name('personalMissionReportView')->middleware('auth');
+Route::get('/personal-mission-personal-mission-report-view', [App\Http\Controllers\PersonalMissionController::class, 'personalMissionReportView'])->name('personalMissionReportView')->middleware('auth', 'personalMissionReportView');
