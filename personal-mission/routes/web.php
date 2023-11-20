@@ -45,9 +45,9 @@ Route::get('/personal-mission-dashboard', [App\Http\Controllers\PersonalMissionC
 
 Route::post('/personal-mission-create', [App\Http\Controllers\PersonalMissionController::class, 'personalMissionCreate'])->name('personalMissionCreate')->middleware('auth');
 
-Route::get('/personal-mission-admin-view', [App\Http\Controllers\PersonalMissionController::class, 'personalMissionAdminView'])->name('personalMissionAdminView')->middleware('auth');
+Route::get('/personal-mission-admin-view', [App\Http\Controllers\PersonalMissionController::class, 'personalMissionAdminView'])->name('personalMissionAdminView')->middleware('auth', 'personal_mission_admin_view');
 
-Route::get('/personal-mission-user-view', [App\Http\Controllers\PersonalMissionController::class, 'personalMissionUserView'])->name('personalMissionUserView')->middleware('auth');
+Route::get('/personal-mission-user-view', [App\Http\Controllers\PersonalMissionController::class, 'personalMissionUserView'])->name('personalMissionUserView')->middleware('auth', 'personal_mission_user_view');
 
 Route::put('/personal-mission-user-edit-request/{id}', [App\Http\Controllers\PersonalMissionController::class, 'personalMissionUserEditRequest'])->name('personalMissionUserEditRequest')->middleware('auth');
 

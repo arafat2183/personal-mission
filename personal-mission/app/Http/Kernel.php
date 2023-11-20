@@ -3,7 +3,9 @@
 namespace App\Http;
 
 use App\Http\Middleware\AdminLoginCheck;
+use App\Http\Middleware\AdminMissionViewCheck;
 use App\Http\Middleware\UserLoginCheck;
+use App\Http\Middleware\UserMissionViewCheck;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -68,5 +70,7 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'admin_login' => AdminLoginCheck::class,
         'user_login' => UserLoginCheck::class,
+        'personal_mission_admin_view' => AdminMissionViewCheck::class,
+        'personal_mission_user_view' => UserMissionViewCheck::class,
     ];
 }
