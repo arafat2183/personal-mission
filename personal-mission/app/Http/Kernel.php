@@ -5,6 +5,7 @@ namespace App\Http;
 use App\Http\Middleware\AdminLoginCheck;
 use App\Http\Middleware\AdminMissionViewCheck;
 use App\Http\Middleware\AdminPersonalMissionReportView;
+use App\Http\Middleware\UserInfoCheck;
 use App\Http\Middleware\UserLoginCheck;
 use App\Http\Middleware\UserMissionViewCheck;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
@@ -74,5 +75,6 @@ class Kernel extends HttpKernel
         'personalMissionAdminView' => AdminMissionViewCheck::class,
         'personalMissionUserView' => UserMissionViewCheck::class,
         'personalMissionReportView' => AdminPersonalMissionReportView::class,
+        'isOwnUser' => UserInfoCheck::class,
     ];
 }

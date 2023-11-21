@@ -33,7 +33,7 @@ Route::get('/user_login', [App\Http\Controllers\UserController::class, 'user_log
 
 Route::get('/user_logout', [App\Http\Controllers\UserController::class, 'user_logout'])->name('user_logout');
 
-Route::get('/edit_user', [App\Http\Controllers\UserController::class, 'edit_user'])->name('edit_user')->middleware('auth');
+Route::get('/edit_user', [App\Http\Controllers\UserController::class, 'edit_user'])->name('edit_user')->middleware('auth', 'isOwnUser');
 
 Route::put('/user-update/{id}', [App\Http\Controllers\UserController::class, 'update_user'])->name('update_user')->middleware('auth');
 
@@ -53,11 +53,11 @@ Route::put('/personal-mission-user-edit-request/{id}', [App\Http\Controllers\Per
 
 Route::put('/personal-mission-user-accept-ignore/{id}', [App\Http\Controllers\PersonalMissionController::class, 'personalMissionAdminEditAcceptIgnoreRequest'])->name('personalMissionAdminEditAcceptIgnoreRequest')->middleware('auth');
 
-Route::get('/personal-mission-user-mission-edit', [App\Http\Controllers\PersonalMissionController::class, 'personalMissionUserMissionEditDashboard'])->name('personalMissionUserMissionEditDashboard')->middleware('auth');
+Route::get('/personal-mission-user-mission-edit', [App\Http\Controllers\PersonalMissionController::class, 'personalMissionUserMissionEditDashboard'])->name('personalMissionUserMissionEditDashboard')->middleware('auth', 'isOwnUser');
 
 Route::put('/personal-mission-user-mission-edit/{id}', [App\Http\Controllers\PersonalMissionController::class, 'personalMissionUserMissionEdit'])->name('personalMissionUserMissionEdit')->middleware('auth');
 
-Route::get('/personal-mission-admin-mission-edit', [App\Http\Controllers\PersonalMissionController::class, 'personalMissionAdminMissionEditDashboard'])->name('personalMissionAdminMissionEditDashboard')->middleware('auth');
+Route::get('/personal-mission-admin-mission-edit', [App\Http\Controllers\PersonalMissionController::class, 'personalMissionAdminMissionEditDashboard'])->name('personalMissionAdminMissionEditDashboard')->middleware('auth', 'isOwnUser');
 
 Route::put('/personal-mission-admin-mission-update/{id}', [App\Http\Controllers\PersonalMissionController::class, 'personalMissionAdminMissionUpdate'])->name('personalMissionAdminMissionUpdate')->middleware('auth');
 
