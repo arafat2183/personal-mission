@@ -13,7 +13,7 @@
 <div class="container">
     <nav class="navbar bg-primary" data-bs-theme="dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Admin Profile</a>
+            <a class="navbar-brand" href="{{route('user_login')}}">Admin Profile</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -88,7 +88,7 @@
                                                 @csrf
                                                 <input type="hidden" name="id" value="{{$usersMission->id}}">
                                                 <button type="submit" name="action" value="accept" class="btn btn-success">Accept</button>
-                                                <button type="submit" name="action" value="ignore" class="btn btn-danger mt-2">Ignore</button>
+                                                <button type="submit" name="action" value="ignore" class="btn btn-danger">Ignore</button>
                                             </form>
                                         </div>
                                     @elseif($usersMission->edit_flag == 2)

@@ -13,7 +13,7 @@
 <div class="container">
     <nav class="navbar bg-primary navbar-fixed-top" data-bs-theme="dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">User Profile</a>
+            <a class="navbar-brand" href="{{route('user_login')}}">Admin Profile</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -23,7 +23,7 @@
                         <a class="nav-link active" aria-current="page" href="{{route('user_login')}}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route('personalMissionUserView')}}">Personal Mission</a>
+                        <a class="nav-link" href="{{route('personalMissionAdminView')}}">Personal Mission</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{route('personalMissionReportView')}}">Personal Mission Report</a>
@@ -43,14 +43,35 @@
             <div class="card-header">
                 <h2>Edit Mission</h2>
             </div>
-            <form method="POST" action="{{route('personalMissionAdminMissionUpdate', $usersWithMissions[0]->id)}}">
-                @method('PUT')
-                @csrf
-                <div class="form-group">
-                    <textarea type="email" name="personal_mission" class="form-control input-lg mt-3" placeholder="Enter mission">{{$usersWithMissions[0]->personal_mission}}</textarea>
-                </div>
-                <button type="submit" class="btn btn-primary mt-3">Update</button>
-            </form>
+            @if(now()->format('d') > 20)
+                <form method="POST" action="{{route('personalMissionAdminMissionUpdate', $usersWithMissions[0]->id)}}">
+                    @method('PUT')
+                    @csrf
+                    <div class="form-group mb-3">
+                        <label for="exampleFormControlTextarea1">Your Mission Complete Rate</label>
+                        <input type="number" name="mission_complete" class="form-control" value="{{$usersWithMissions[0]->mission_complete}}" id="mission_complete_rate" placeholder="Enter Your Mission Complete Rate out from 100!">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1">Your Mission</label>
+                        <textarea disabled name="personal_mission" class="form-control input-lg" placeholder="Enter mission">{{$usersWithMissions[0]->personal_mission}}</textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary mt-3">Update</button>
+                </form>
+            @else
+                <form method="POST" action="{{route('personalMissionAdminMissionUpdate', $usersWithMissions[0]->id)}}">
+                    @method('PUT')
+                    @csrf
+                    <div class="form-group mb-3">
+                        <label for="exampleFormControlTextarea1">Your Mission Complete Rate</label>
+                        <input disabled type="number" name="mission_complete" class="form-control" value={{$usersWithMissions[0]->mission_complete}} id="mission_complete_rate" placeholder="Enter Your Mission Complete Rate out from 100!">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1">Your Mission</label>
+                        <textarea name="personal_mission" class="form-control input-lg" placeholder="Enter mission">{{$usersWithMissions[0]->personal_mission}}</textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary mt-3">Update</button>
+                </form>
+            @endif
         </div>
     </div>
 </div>

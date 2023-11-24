@@ -26,7 +26,7 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="#">Home</a>
                     </li>
-                    @if(isset($user) && $user['user_type'] == 1))
+                    @if(isset($user) && $user['user_type'] == 1)
                         <li class="nav-item">
                             <a class="nav-link" href="{{route('personalMissionAdminView')}}">Personal Mission</a>
                         </li>
@@ -35,7 +35,12 @@
                             <a class="nav-link" href="{{route('personalMissionUserView')}}">Personal Mission</a>
                         </li>
                     @endif
-                    @if(isset($user) && $user['user_type'] == 1))
+                    @if(isset($user) && $user['user_type'] == 1)
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('personalMissionReportView')}}">Personal Mission Report</a>
+                        </li>
+                    @endif
+                    @if(isset($user) && $user['user_type'] == 1)
                         <li class="nav-item">
                             <a class="nav-link" href="{{route('admin_login')}}">Profile</a>
                         </li>

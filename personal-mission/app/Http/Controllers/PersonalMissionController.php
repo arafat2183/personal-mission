@@ -93,8 +93,8 @@ class PersonalMissionController extends Controller
     {
         $user = Auth::user();
         $usersWithMissions = DB::table('users')
-            ->join('personal_missions', 'users.id', '=', 'personal_missions.user_id')
-            ->select('users.*', 'personal_missions.id', 'personal_missions.personal_mission', 'personal_missions.edit_flag')
+            ->leftJoin('personal_missions', 'users.id', '=', 'personal_missions.user_id')
+            ->select('users.*', 'personal_missions.*')
             ->where('users.id', '=', $user->id)
             ->whereYear('personal_missions.created_at', '=', now()->format('Y')) //this year
             ->whereMonth('personal_missions.created_at', '=', now()->format('m')) //this month
@@ -104,7 +104,7 @@ class PersonalMissionController extends Controller
 
     public function personalMissionUserMissionEdit(Request $request): View
     {
-        PersonalMission::where('id', $request->id)->update($request->only('personal_mission', 'edit_flag'));
+        PersonalMission::where('id', $request->id)->update($request->only('personal_mission', 'edit_flag', 'mission_complete'));
         $user = Auth::user();
         $usersWithMissions = DB::table('users')
             ->join('personal_missions', 'users.id', '=', 'personal_missions.user_id')
@@ -120,8 +120,8 @@ class PersonalMissionController extends Controller
     {
         $user = Auth::user();
         $usersWithMissions = DB::table('users')
-            ->join('personal_missions', 'users.id', '=', 'personal_missions.user_id')
-            ->select('users.*', 'personal_missions.id', 'personal_missions.personal_mission', 'personal_missions.edit_flag')
+            ->leftJoin('personal_missions', 'users.id', '=', 'personal_missions.user_id')
+            ->select('users.*', 'personal_missions.*')
             ->where('users.id', '=', $user->id)
             ->whereYear('personal_missions.created_at', '=', now()->format('Y')) //this year
             ->whereMonth('personal_missions.created_at', '=', now()->format('m')) //this month
@@ -131,7 +131,7 @@ class PersonalMissionController extends Controller
 
     public function personalMissionAdminMissionUpdate(Request $request)
     {
-        PersonalMission::where('id', $request->id)->update($request->only('personal_mission'));
+        PersonalMission::where('id', $request->id)->update($request->only('personal_mission', 'mission_complete'));
         $user = Auth::user();
         $usersWithMissions = DB::table('users')
             ->join('personal_missions', 'users.id', '=', 'personal_missions.user_id')

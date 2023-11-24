@@ -13,13 +13,21 @@
 <div class="container">
     <nav class="navbar bg-primary navbar-fixed-top" data-bs-theme="dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">User Profile</a>
-            @if(isset($all_data[1]['personal_mission']) && $all_data[1]['personal_mission'] != null)
-                <div class="text-center">
-                    <button type="button" hidden class="btn btn-success">
-                        <a href="{{route('personalMissionUser')}}" class="navbar-brand inline_block font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Write This Month's Personal Mission</a>
-                    </button>
-                </div>
+            <a class="navbar-brand" href="{{route('user_login')}}">User Profile</a>
+            @if(isset($all_data[1]->personal_mission) && $all_data[1]->personal_mission != null)
+                @if(now()->format('d') > 20 && $all_data[1]->mission_complete == 0)
+                    <div class="text-center">
+                        <button type="button" class="btn btn-success">
+                            <a href="{{route('personalMissionUserMissionEditDashboard')}}" class="navbar-brand inline_block font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Complete Your Achievement Rate out of 100</a>
+                        </button>
+                    </div>
+                @else
+                    <div class="text-center">
+                        <button type="button" hidden class="btn btn-success">
+                            <a href="{{route('personalMissionUser')}}" class="navbar-brand inline_block font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Write This Month's Personal Mission</a>
+                        </button>
+                    </div>
+                @endif
             @else
                 @if(now()->format('d') > 20)
                     <div class="text-center">

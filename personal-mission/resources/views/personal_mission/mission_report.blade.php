@@ -17,7 +17,7 @@
 <div class="container">
     <nav class="navbar bg-primary" data-bs-theme="dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Admin Profile</a>
+            <a class="navbar-brand" href="{{route('user_login')}}">Admin Profile</a>
             @if(isset($all_data[1]['personal_mission']) && $all_data[1]['personal_mission'] != null)
                 <div class="text-center">
                     <button type="button" hidden="" class="btn btn-success">
@@ -49,9 +49,6 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{route('personalMissionAdminView')}}">Personal Mission</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{route('personalMissionReportView')}}">Personal Mission Report</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{route('personalMissionReportView')}}">Personal Mission Report</a>
