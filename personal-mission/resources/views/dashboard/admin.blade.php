@@ -13,6 +13,10 @@
         <nav class="navbar bg-primary" data-bs-theme="dark">
             <div class="container-fluid">
                 <a class="navbar-brand" href="{{route('user_login')}}">Admin Profile</a>
+                @if(isset($all_data[1]) == false)
+                    @php($all_data[1] = new stdClass())
+                    @php($all_data[1]->created_at = now())
+                @endif
                 @if($all_data[1]->created_at->format('Y') == now()->format('Y') && $all_data[1]->created_at->format('m') == now()->format('m') && isset($all_data[1]->personal_mission) && $all_data[1]->personal_mission != null)
                     @if(now()->format('d') > 20 && $all_data[1]->mission_complete == 0)
                         <div class="text-center">

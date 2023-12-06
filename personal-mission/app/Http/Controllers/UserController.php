@@ -67,6 +67,11 @@ class UserController extends Controller
     {
         $user = Auth::user();
         $userMission = PersonalMission::where('user_id', $user->id)->orderBy('created_at', 'DESC')->first();
+//        if ($userMission == null)
+//        {
+//            dd($user['id']);
+//            $userMission->created_at = now();
+//        }
         $all_data = array($user, $userMission);
         return view('dashboard.admin', compact('all_data'));
     }
