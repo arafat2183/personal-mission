@@ -70,6 +70,7 @@
                     <div class="col col-lg-6 mb-4 mb-lg-0">
                         <div class="card mb-3" style="border-radius: .5rem;">
                             <button class="btn btn-success">This Month's Mission Report</button>
+
                             <div class="pl-2">
                                 @php($xValues = [])
                                 @php($yValues = [])
@@ -110,8 +111,12 @@
                                             @break
                                     @endswitch
                                 @endforeach
+                                @if(count($usersWithMissions) === 0)
+                                    <div class="pl-2" style="text-align:center;">
+                                        <section>No Data Found.</section>
+                                    </div>
+                                @endif
                                 <canvas id="myChart" style="width:100%;max-width:1000px;margin-left: 10px"></canvas>
-
                                 <script>
                                     var xValues = JSON.parse('<?= json_encode($xValues); ?>');
                                     var yValues = JSON.parse('<?= json_encode($yValues); ?>');
@@ -136,11 +141,11 @@
                                                 padding: 26
                                             },
                                             plugins: {
-                                              labels: {
-                                                  render: 'label',
-                                                  fontStyle: 'bolder',
-                                                  position: 'outside',
-                                              }
+                                                labels: {
+                                                    render: 'label',
+                                                    fontStyle: 'bolder',
+                                                    position: 'outside',
+                                                }
                                             },
                                         },
                                         plugins: [ChartDataLabels]

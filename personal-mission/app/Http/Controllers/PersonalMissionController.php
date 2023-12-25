@@ -28,7 +28,14 @@ class PersonalMissionController extends Controller
         $missionData = $request->only('user_id', 'personal_mission');
         $missionData['user_id'] = $user->id;
         PersonalMission::create($missionData);
-        return redirect()->route('user_login')->with(['success' => 'A new mission created successfully!']);
+        if($user->user_type == 1)
+        {
+            return redirect()->route('admin_login')->with(['success' => 'A new mission created successfully!']);
+        }else
+        {
+            return redirect()->route('user_login')->with(['success' => 'A new mission created successfully!']);
+        }
+
     }
 
     public function userMissionInfoGet()

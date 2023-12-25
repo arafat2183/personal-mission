@@ -103,6 +103,11 @@
 
                     </tbody>
                 </table>
+                @if(count($usersWithMissions) === 0)
+                    <div>
+                        <section>No Data Found.</section>
+                    </div>
+                @endif
             </div>
         </div>
     </div>
