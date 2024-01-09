@@ -63,7 +63,7 @@ Route::put('/personal-mission-admin-mission-update/{id}', [App\Http\Controllers\
 
 Route::get('/personal-mission-personal-mission-report-view', [App\Http\Controllers\PersonalMissionController::class, 'personalMissionReportView'])->name('personalMissionReportView')->middleware('auth', 'personalMissionReportView');
 
-Route::get('/user-profile-view', [App\Http\Controllers\UserProfileController::class, 'adminProfileView'])->name('adminProfileView')->middleware('auth', 'admin_login');
+Route::get('/admin-profile-view', [App\Http\Controllers\UserProfileController::class, 'adminProfileView'])->name('adminProfileView')->middleware('auth', 'admin_login');
 
 Route::get('/admin-profile-edit', [App\Http\Controllers\UserProfileController::class, 'editAdminProfile'])->name('editAdminProfile')->middleware('auth');
 

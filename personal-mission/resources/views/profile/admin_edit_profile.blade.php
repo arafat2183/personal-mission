@@ -77,148 +77,34 @@
             </div>
         </nav>
     </div>
-    <div class="item">
-        <div class="container mt-5">
-            <div class="card mt-5 mb-3">
-                <div class="card-body">
-                    <h3 class="text-uppercase text-center mb-5">Edit Your Info</h3>
-                    <form method="POST" action="#">
-                        @method('put')
-                        @csrf
-                        <div class="item p-2">
-                            <p>Personal Information:</p>
-                            <div class="name-item">
-                                <input type="text" value="{{request()->full_name}}" name="full_name"
-                                       placeholder="Full name"/>
-                                <input type="hidden" name="id" value="{{request()->id}}">
-                            </div>
-                            <div class="name-item mt-2">
-                                <input type="text" value="{{request()->father_name}}" name="father_name"
-                                       placeholder="Father's Name"/>
-                                <input type="hidden" name="id" value="{{request()->id}}">
-                            </div>
-                            <div class="name-item mt-2">
-                                <input type="text" value="{{request()->mother_name}}" name="mother_name"
-                                       placeholder="Mother's Name"/>
-                                <input type="hidden" name="id" value="{{request()->id}}">
-                            </div>
-                            <div class="item mt-3">
-                                <p>Date of birth:</p>
-                                <div class="item">
-                                    <input type="date" value="{{request()->date_of_birth}}" name="date_of_birth"
-                                           required/>
-                                    <input type="hidden" name="id" value="{{request()->id}}">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <p>About Me :</p>
-                            <textarea type="text" value="{{request()->about_me}}" name="about_me" rows="5"></textarea>
-                        </div>
-                        <div class="item">
-                            <p>Address:</p>
-                            <input type="text" value="{{request()->present_address}}" name="present_address"
-                                   placeholder="Present address"/>
-                            <div class="city-item">
-                                <input type="text" value="{{request()->city}}" name="city" placeholder="City"/>
-                                <input type="text" value="{{request()->region}}" name="region" placeholder="Region"/>
-                                <input type="number" value="{{request()->zip_code}}" name="zip_code"
-                                       placeholder="Postal / Zip code"/>
-                                <input type="text" value="{{request()->country}}" name="country" placeholder="Country"/>
-                            </div>
-                        </div>
-                        <div class="item mt-3">
-                            <p>Contact:</p>
-                            <input type="email" value="{{request()->email}}" name="email"
-                                   placeholder="type your email"/>
-                            <input type="text" value="{{request()->social_link}}" name="social_link"
-                                   placeholder="social link"/>
-                            <div class="city-item">
-                                <input type="number" value="{{request()->mobile_number}}" name="mobile_number"
-                                       placeholder="Mobile number where you can be reached"/>
-                                <input type="text" value="{{request()->emergency_contact}}" name="emergency_contact"
-                                       placeholder="Emergency Contact"/>
-                            </div>
-                        </div>
-
-
-                        <div class="item">
-                            <div class="container mt-5">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <p>Education</p>
-                                        <div class="city-item">
-                                            <input type="text" value="{{request()->level_of_education}}"
-                                                   name="level_of_education"
-                                                   placeholder="Level of Education"/>
-                                            <input type="text" value="{{request()->major_group}}" name="major_group"
-                                                   placeholder="Concentration/ Major/Group"/>
-                                            <input type="text" value="{{request()->result_division_class}}"
-                                                   name="result_division_class"
-                                                   placeholder="Result Division/Class"/>
-                                            <input type="number" value="{{request()->marks}}" name="marks"
-                                                   placeholder="Marks(%)"/>
-                                            <input type="number" value="{{request()->years_of_passing}}"
-                                                   name="years_of_passing"
-                                                   placeholder="Year of Passing "/>
-                                        </div>
-                                        <input type="text" value="{{request()->institute_name}}" name="institute_name"
-                                               placeholder="Institute Name"/>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="container mt-5">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <p>Experience</p>
-                                        <input type="text" name="company_name" placeholder="Company Name"/>
-                                        <div class="city-item">
-                                            <input type="text" value="{{request()->company_business}}"
-                                                   name="company_business" placeholder="Company Business"/>
-                                            <input type="text" value="{{request()->designation}}" name="designation"
-                                                   placeholder="Designation"/>
-                                            <input type="text" value="{{request()->department}}" name="department"
-                                                   placeholder="Department"/>
-                                            <input type="text" value="{{request()->responsibility}}"
-                                                   name="responsibility" placeholder="Responsibilities"/>
-                                            <input type="text" value="{{request()->company_location}}"
-                                                   name="company_location" placeholder="Company Location"/>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <div class="container mt-5">
-                                        <div class="card">
-                                            <div class="card-body">
-                                                <p>Employment Period:</p>
-                                                <div class="item">
-                                                    <input type="date" value="{{request()->employment_period}}"
-                                                           name="employment_period" required/>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="item">
-                                            <p>Highlights</p>
-                                            <div class="item">
-                                                <textarea value="{{request()->highlights}}" name="highlights"
-                                                          placeholder="start with 1."
-                                                          rows="5"></textarea>
-                                            </div>
-                                        </div>
-                                        <div class="btn-block mb-2 mt-3">
-                                            <button type="submit" name="add" class="text-bg-info p-3">UPDATE INFO
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-
+    <div class="container mt-3">
+        <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <button class="nav-link active" id="nav-basic-tab" data-bs-toggle="tab" data-bs-target="#nav-basic" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Basic</button>
+                <button class="nav-link" id="nav-education-tab" data-bs-toggle="tab" data-bs-target="#nav-education" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Education</button>
+                <button class="nav-link" id="nav-skills-tab" data-bs-toggle="tab" data-bs-target="#nav-skills" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Skills</button>
+                <button class="nav-link" id="nav-certifications-tab" data-bs-toggle="tab" data-bs-target="#nav-certifications" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Certifications</button>
+                <button class="nav-link" id="nav-experience-tab" data-bs-toggle="tab" data-bs-target="#nav-experience" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Experience</button>
+                <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Contact Information</button>
+                <button class="nav-link" id="nav-address-tab" data-bs-toggle="tab" data-bs-target="#nav-address" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Address</button>
+                <button class="nav-link" id="nav-language-tab" data-bs-toggle="tab" data-bs-target="#nav-language" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Language</button>
+                <button class="nav-link" id="nav-references-tab" data-bs-toggle="tab" data-bs-target="#nav-references" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">References</button>
+                <button class="nav-link" id="nav-extracurricular-tab" data-bs-toggle="tab" data-bs-target="#nav-extracurricular" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Extracurricular involvement</button>
+                <button class="nav-link" id="nav-hobbies-tab" data-bs-toggle="tab" data-bs-target="#nav-hobbies" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Hobbies</button>
             </div>
+        </nav>
+        <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="nav-basic" role="tabpanel" aria-labelledby="nav-basic-tab" tabindex="0">test Basic</div>
+            <div class="tab-pane fade" id="nav-education" role="tabpanel" aria-labelledby="nav-education-tab" tabindex="0">test Education</div>
+            <div class="tab-pane fade" id="nav-skills" role="tabpanel" aria-labelledby="nav-skills-tab" tabindex="0">test Skills</div>
+            <div class="tab-pane fade" id="nav-certifications" role="tabpanel" aria-labelledby="nav-certifications-tab" tabindex="0">test Certifications</div>
+            <div class="tab-pane fade" id="nav-experience" role="tabpanel" aria-labelledby="nav-experience-tab" tabindex="0">test Experience</div>
+            <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab" tabindex="0">test Contact Information</div>
+            <div class="tab-pane fade" id="nav-address" role="tabpanel" aria-labelledby="nav-address-tab" tabindex="0">test Address</div>
+            <div class="tab-pane fade" id="nav-language" role="tabpanel" aria-labelledby="nav-language-tab" tabindex="0">test Language</div>
+            <div class="tab-pane fade" id="nav-references" role="tabpanel" aria-labelledby="nav-references-tab" tabindex="0">test References</div>
+            <div class="tab-pane fade" id="nav-extracurricular" role="tabpanel" aria-labelledby="nav-extracurricular-tab" tabindex="0">test Extracurricular involvement</div>
+            <div class="tab-pane fade" id="nav-hobbies" role="tabpanel" aria-labelledby="nav-hobbies-tab" tabindex="0">test Hobbies</div>
         </div>
     </div>
 </section>
