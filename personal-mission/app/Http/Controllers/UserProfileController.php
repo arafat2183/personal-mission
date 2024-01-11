@@ -2,23 +2,35 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\UserProfile;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Illuminate\View\View;
 class UserProfileController extends Controller
 {
 
     public function adminProfileView():View
     {
-        return view('profile.admin_profile_view');
+        $userBasicInfo = Auth::user();
+        return view('profile.admin_profile_view')->with('userBasicInfo', $userBasicInfo);
     }
 
     public function editAdminProfile():View
     {
+        $userBasicInfo = Auth::user();
         return view('profile.admin_edit_profile');
     }
+
+    public function basicInformationUpdate(Request $request)
+    {
+        User::where('id', $request->id)->update($request->only('first_name', 'last_name', 'email', 'mobile', 'country', 'dob'));
+        return view('profile.admin_edit_profile');
+    }
+
 
     /**
      * Display a listing of the resource.

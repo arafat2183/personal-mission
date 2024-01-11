@@ -67,3 +67,5 @@ Route::get('/admin-profile-view', [App\Http\Controllers\UserProfileController::c
 
 Route::get('/admin-profile-edit', [App\Http\Controllers\UserProfileController::class, 'editAdminProfile'])->name('editAdminProfile')->middleware('auth');
 
+Route::put('/admin-profile-update/{id}', [App\Http\Controllers\UserProfileController::class, 'basicInformationUpdate'])->name('basicInformationUpdate')->middleware('auth');
+

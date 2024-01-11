@@ -241,7 +241,17 @@
                                             </div>
                                             <div class="container">
                                                 <div class="buttons">
-                                                    <a href="{{route('editAdminProfile')}}">
+                                                    <a href="{{route('editAdminProfile',
+                                                            [
+                                                                'id'=>$userBasicInfo->id,
+                                                                'first_name'=>$userBasicInfo->first_name,
+                                                                'last_name'=>$userBasicInfo->last_name,
+                                                                'email'=>$userBasicInfo->email,
+                                                                'mobile'=>$userBasicInfo->mobile,
+                                                                'country'=>$userBasicInfo->country,
+                                                                'dob'=>$userBasicInfo->dob,
+                                                                'user_type'=>$userBasicInfo->user_type
+                                                        ])}}">
                                                         <button type="button" class="btn btn-info">Edit</button>
                                                     </a>
                                                     <a
